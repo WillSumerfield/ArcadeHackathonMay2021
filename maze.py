@@ -78,7 +78,7 @@ class Maze:
         visited = [[False for _ in range(size)] for _ in range(size)]
 
         # A list containing spaces with adjacent open squares
-        open_adjacent = []
+        unvisitied_adjacent = []
 
         # The number of visited and total spaces
         visited_count = 0
@@ -91,9 +91,10 @@ class Maze:
 
         while (visited_count < total):
 
-            # Set the current space to not empty
-            visited[pos[0]][pos[1]] = True
-            visited_count += 1
+            # If we haven't visited here before, record that we have
+            if (not visited[pos[0]][pos[1]]):
+                visited[pos[0]][pos[1]] = True
+                visited_count += 1
 
             # The directions we can go
             directions = []
@@ -109,7 +110,7 @@ class Maze:
                 directions.append(Directions.BACKWARD)
 
             # Can we move left?
-            if (pos[1] < size and not visited[pos[0]][pos[1]+1]):
+            if (pos[1]+1 < size and not visited[pos[0]][pos[1]+1]):
                 directions.append(Directions.LEFT)
 
             # Can we move right?
@@ -121,9 +122,12 @@ class Maze:
             # region Randomly choose and go in an available Direction and break the wall
             if (directions.__len__() != 0):
 
+                # Randomly choose Direction
                 direction = directions[random.randrange(directions.__len__())]
 
-                print(f"{direction}")
+                # If there are more ways to go, remember this space
+                if (directions.__len__() > 1):
+                    unvisitied_adjacent.append(pos.copy())
 
                 # Change the pos and break the Wall
                 if (direction == Directions.FORWARD):
@@ -151,7 +155,7 @@ class Maze:
             # region Otherwise, backtrack
 
             else:
-                pass
+                pos = unvisitied_adjacent.pop()
 
             # endregion
 
