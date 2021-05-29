@@ -33,14 +33,17 @@ class MazeWall(Entity):
 
 class Maze:
 
-    def __init__(self, size, twodimension=True):
+    def __init__(self, size, random_deletion=0.1, two_dimension=True):
 
-        # Instance Variables
+        # region Instance Variables
+
         self.size = size
+
+        # endregion
 
         # region Maze 2D
 
-        if (twodimension):
+        if (two_dimension):
 
             # Create Walls Grid
             self.Walls = [[[None for _ in range(3)] for _ in range(size)] for _ in range(size)]
@@ -89,6 +92,7 @@ class Maze:
 
         # endregion
 
+        # Carve out every space
         while (visited_count < total):
 
             # If we haven't visited here before, record that we have
@@ -158,5 +162,17 @@ class Maze:
                 pos = unvisitied_adjacent.pop()
 
             # endregion
+
+        # Remove some walls randomly
+        for i in range(round(random_deletion * total)):
+            # Get X, Z, and Direction
+            wall_x = random.randrange(size)
+            wall_z = random.randrange(size)
+            wall_dir = random.randrange(2)
+
+            # Check if Wall Exists
+            if (self.Walls[wall_x][wall_z][wall_dir] != None):
+                destroy(self.Walls[wall_x][wall_z][wall_dir])
+                self.Walls[wall_x][wall_z][wall_dir] = None
 
         # endregion

@@ -23,8 +23,8 @@ player = Player()
 
 # region Camera
 
-camera.position = (-5, 2, 0)
-camera.rotation = (30, 90, 0)
+camera.position = (-6, 10, 0)
+camera.rotation = (60, 90, 0)
 
 # endregion
 
