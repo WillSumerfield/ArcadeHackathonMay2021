@@ -18,6 +18,7 @@ class Player(FirstPersonController):
         super().__init__(**kwargs)
         self.model = 'sphere'
         self.color = color.yellow
+        self.alpha = 1
         self.scale = (0.6, 0.6, 0.6)
         self.position = (0,0,0)
         self.origin_y = 0
@@ -40,9 +41,9 @@ class Player(FirstPersonController):
             self.set_action(self.Actions.FORWARD, Vec3(self.x+1,self.y,self.z))
         elif (held_keys['s']):
             self.set_action(self.Actions.BACKWARD, Vec3(self.x-1,self.y,self.z))
-        elif (key == 'a'):
+        elif (held_keys['a']):
             self.set_action(self.Actions.LEFT, Vec3(self.x,self.y,self.z+1))
-        elif (key == 'd'):
+        elif (held_keys['d']):
             self.set_action(self.Actions.RIGHT, Vec3(self.x,self.y,self.z-1))
         else:
             self.set_action(self.Actions.NOTHING, Vec3(self.x,self.y,self.z))

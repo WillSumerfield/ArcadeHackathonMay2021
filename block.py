@@ -15,37 +15,7 @@ class Block:
                 alpha=1
             )
 
-            # Set Wall Based on Direction
-            if (direction == Directions.FORWARD):
-                self.position = position + (0.5,0,0)
-                self.scale = (0.1,1,1)
-                self.texture='texture_wall'
-                self.color = color.white
 
-            elif (direction == Directions.BACKWARD):
-                self.position = position + (-0.5,0,0)
-                self.scale = (0.1,1,1)
-                self.color = color.white
-
-            elif (direction == Directions.LEFT):
-                self.position = position + (0,0,-0.5)
-                self.scale = (1,1,0.1)
-                self.color = color.white
-
-            elif (direction == Directions.RIGHT):
-                self.position = position + (0,0,0.5)
-                self.scale = (1,1,0.1)
-                self.color = color.white
-
-            elif (direction == Directions.UP):
-                self.position = position + (0,0.5,0)
-                self.scale = (1,0.1,1)
-                self.color = color.black
-
-            else:
-                self.position = position + (0,-0.5,0)
-                self.scale = (1,0.1,1)
-                self.color = color.black
 
     def __init__(self, position=(0, 0, 0)):
         self.position = position

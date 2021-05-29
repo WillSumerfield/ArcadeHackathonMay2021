@@ -11,25 +11,20 @@ app = Ursina()
 
 # region Build the World
 
-
+maze = Maze(20)
 
 # endregion
 
 # region Player
 
-player = FirstPersonController()
-player.model = 'sphere'
-player.color = color.yellow
-player.scale = (0.8, 0.8, 0.8)
-player.origin_y = 0
+player = Player()
 
 # endregion
 
 # region Camera
 
-camera.position = (0, 1, -5)
-camera.rotation = (30, 0, 0)
-
+camera.position = (-5, 2, 0)
+camera.rotation = (30, 90, 0)
 
 # endregion
 
@@ -38,6 +33,7 @@ camera.rotation = (30, 0, 0)
 # endregion
 
 # region On Update
+
 def update():
     if (held_keys['escape']):
         exit()
@@ -45,11 +41,11 @@ def update():
 
 # endregion
 
+# region Music
 
+#playsound(os.path.join("music", "pacman-theme.mp3"))
 
-#music
-
-playsound(os.path.join("music", "pacman-theme.mp3"))  
+# endregion
 
 # Run the Game
 app.run()
