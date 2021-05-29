@@ -20,7 +20,7 @@ class Player(FirstPersonController):
         self.color = color.yellow
         self.alpha = 1
         self.scale = (0.6, 0.6, 0.6)
-        self.position = (0,0,0)
+        self.position = (10,0,10)
         self.origin_y = 0
         self.action = self.Actions.NOTHING
         self.speed = 1/15
