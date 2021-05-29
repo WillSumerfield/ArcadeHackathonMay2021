@@ -3,6 +3,9 @@ from directions import Directions
 import random
 
 
+# Randomize the Seed
+random.seed()
+
 class MazeWall(Entity):
 
     def __init__(self, position, direction, **kwargs):

@@ -17,7 +17,7 @@ maze = Maze(20)
 
 # region Player
 
-player = Player()
+player = Player(maze)
 
 # endregion
 
