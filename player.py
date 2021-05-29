@@ -1,6 +1,7 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 from enum import Enum
+from ursina.shaders import lit_with_shadows_shader
 
 
 class Player(FirstPersonController):
@@ -22,8 +23,9 @@ class Player(FirstPersonController):
         self.color = color.yellow
         self.alpha = 1
         self.scale = (0.6, 0.6, 0.6)
-        self.position = (10,0,10)
+        self.position = (0,0,0)
         self.origin_y = 0
+        self.shader = lit_with_shadows_shader
 
         # endregion
 
@@ -113,5 +115,15 @@ class Player(FirstPersonController):
             else:
                 self.z -= self.speed
 
+        # region Check for Collisions
 
+        # Point Collision
+        for i in range(self.maze.points.__len__()):
+            pt = self.maze.points[i]
+            if (self.position == pt.position):
+                destroy(pt)
+                del self.maze.points[i]
+                break
+
+        # endregion
 

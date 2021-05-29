@@ -11,7 +11,7 @@ app = Ursina()
 
 # region Build the World
 
-maze = Maze(20)
+maze = Maze(10)
 
 # endregion
 
