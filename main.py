@@ -1,6 +1,8 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
-from voxel import Voxel
+from block import Block
+from maze import Maze
+from player import Player
 import os
 from playsound import playsound
 
