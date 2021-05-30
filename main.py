@@ -1,8 +1,7 @@
 from ursina import *
-from ursina.prefabs.first_person_controller import FirstPersonController
-from block import Block
 from maze import Maze
 from player import Player
+from enemies import Enemy
 import os
 from playsound import playsound
 
@@ -11,13 +10,15 @@ app = Ursina()
 
 # region Build the World
 
-maze = Maze(10)
+maze = Maze(5, two_dimension=False)
 
 # endregion
 
 # region Player
 
 player = Player(maze)
+
+lives = 3
 
 # endregion
 
@@ -30,6 +31,24 @@ camera.rotation = (60, 90, 0)
 
 # region HUD
 
+# Text
+Points = Text(f"Points: {maze.total_points - maze.current_points}", size=0.05, position=(-0.85, 0.45))
+
+# Ursina
+window.fps_counter.enabled = False
+window.exit_button.visible = False
+window.title = "PacMun - 3D"
+window.cog_menu.enabled = False
+window.fullscreen = True
+
+# endregion
+
+# region Gameover
+
+def gameover():
+    exit()
+
+
 # endregion
 
 # region On Update
@@ -37,6 +56,19 @@ camera.rotation = (60, 90, 0)
 def update():
     if (held_keys['escape']):
         exit()
+
+    # region HUD Updates
+
+    Points.text = f"Remaining Points: {maze.total_points - maze.current_points}"
+
+    # endregion
+
+    # region Check for Gameover
+
+    if (player.gameover):
+        gameover()
+
+    #endregion
 
 
 # endregion
